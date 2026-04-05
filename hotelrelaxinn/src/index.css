@@ -2,7 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-slate-50 antialiased;
-  scroll-behavior: smooth;
+@layer base {
+  body {
+    @apply bg-[#0a0a0a] text-[#e0e0e0] antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Fluid Headings: Grows on Desktop, Shrinks on Mobile */
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  h1 { font-size: clamp(2.5rem, 8vw, 5rem); }
+  h2 { font-size: clamp(1.8rem, 5vw, 3rem); }
+}
+
+@layer components {
+  /* Premium Card with Glass Effect */
+  .premium-card {
+    @apply relative overflow-hidden transition-all duration-500 rounded-none border border-white/5 bg-white/[0.02] backdrop-blur-md;
+  }
+
+  .premium-card:hover {
+    @apply border-[#c5a059]/30 -translate-y-2;
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Gold Gradient Text */
+  .text-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #f9ebaf 50%, #c5a059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Premium Button */
+  .btn-gold {
+    @apply px-8 py-4 bg-[#c5a059] text-black font-bold tracking-widest uppercase text-xs transition-all duration-300;
+  }
+  
+  .btn-gold:hover {
+    @apply bg-[#f9ebaf] shadow-[0_0_20px_rgba(197,160,89,0.3)];
+  }
 }
