@@ -1,20 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <title>Hotel Relax Inn | Exquisite Dining & Stay</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Relax Inn | Premium Dining</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-      body { background-color: #0a0a0a; margin: 0; color: #e0e0e0; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Playfair+Display:ital,wght@0,800;1,800&display=swap');
+        
+        :root {
+            --premium-gold: #D4AF37;
+            --premium-sky: #0ea5e9;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth; 
+            overflow-x: hidden; 
+            background-color: #050505; 
+        }
+
+        /* 1. THE LUXURY JUMP ANIMATION */
+        @keyframes luxuryJump {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-35px) scale(1.05); text-shadow: 0 25px 40px rgba(14, 165, 233, 0.7); }
+        }
+        .jump-text span { 
+            display: inline-block; 
+            animation: luxuryJump 2s infinite ease-in-out;
+            font-family: 'Playfair Display', serif;
+        }
+        .spacer { width: 2.5rem; display: inline-block; }
+
+        /* Staggered Delay for Wave Effect */
+        .jump-text span:nth-child(1) { animation-delay: 0.1s; }
+        .jump-text span:nth-child(2) { animation-delay: 0.2s; }
+        .jump-text span:nth-child(3) { animation-delay: 0.3s; }
+        .jump-text span:nth-child(4) { animation-delay: 0.4s; }
+        .jump-text span:nth-child(5) { animation-delay: 0.5s; }
+        .jump-text span:nth-child(7) { animation-delay: 0.6s; }
+        .jump-text span:nth-child(8) { animation-delay: 0.7s; }
+        .jump-text span:nth-child(9) { animation-delay: 0.8s; }
+        .jump-text span:nth-child(10) { animation-delay: 0.9s; }
+        .jump-text span:nth-child(11) { animation-delay: 1.0s; }
+        .jump-text span:nth-child(13) { animation-delay: 1.1s; }
+        .jump-text span:nth-child(14) { animation-delay: 1.2s; }
+        .jump-text span:nth-child(15) { animation-delay: 1.3s; }
+
+        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505); }
+        [x-cloak] { display: none !important; }
+        
+        .premium-card {
+            background: #111111;
+            border: 1px solid #222;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .premium-card:hover {
+            border-color: var(--premium-sky);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
+        }
     </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+</head>
+<body x-data="{ open: false, imgSrc: '', imgTitle: '', imgPrice: '' }">
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 hero-overlay z-10"></div>
+        <img src="https://i.ibb.co/60sfv1rW/interior.jpg" class="absolute inset-0 w-full h-full object-cover opacity-40 scale-110" alt="Hotel Relax Inn Interior">
+        
+        <div class="relative z-20 text-center px-4">
+            <h1 class="text-6xl md:text-[9rem] font-black text-white italic jump-text tracking-tighter">
+                <span>H</span><span>o</span><span>t</span><span>e</span><span>l</span>
+                <span class="spacer"></span>
+                <span class="text-sky-400">R</span><span class="text-sky-400">e</span><span class="text-sky-400">l</span><span class="text-sky-400">a</span><span class="text-sky-400">x</span>
+                <span class="spacer"></span>
+                <span class="text-sky-400">I</span><span class="text-sky-400">n</span><span class="text-sky-400">n</span>
+            </h1>
+            <p class="text-slate-400 text-xl md:text-2xl uppercase tracking-[0.8em] mt-16 font-light">Elegance in Every Bite</p>
+            <div class="mt-16">
+                <a href="#menu" class="px-16 py-6 bg-white text-black font-black rounded-full shadow-2xl hover:bg-sky-500 hover:text-white transition-all inline-block uppercase tracking-widest text-sm">Reserve a Table</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="menu" class="py-32 bg-[#050505] text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+                <div>
+                    <h2 class="text-6xl font-black italic">The Master Menu</h2>
+                    <p class="text-sky-500 font-bold tracking-widest mt-2">CRAFTED BY EXPERT CHEFS</p>
+                </div>
+                <div class="h-[2px] flex-grow mx-10 bg-zinc-800 hidden md:block"></div>
+                <div class="text-right">
+                    <span class="text-zinc-500 text-sm uppercase tracking-widest">Bhadrak, Odisha</span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=1000'; imgTitle = 'Executive Mutton Thali'; imgPrice = '₹280'" 
+                     class="premium-card p-10 rounded-[3rem] cursor-pointer group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-16 h-[2px] bg-sky-500 mt-4 group-hover:w-full transition-all duration-500"></div>
+                        <span class="text-3xl font-black text-white group-hover:text-sky-400 transition-colors">₹280</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 uppercase tracking-tighter">Special Mutton Thali</h3>
+                    <p class="text-zinc-500 leading-relaxed">Slow-cooked tender mutton curry, steamed basmati rice, dalma, and traditional bhaja.</p>
+                    <div class="mt-8 flex items-center gap-3 text-sky-500 text-xs font-black tracking-widest uppercase">
+                        <span>View Visual</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1000'; imgTitle = 'Maharaja Royal Veg Thali'; imgPrice = '₹299'" 
+                     class="premium-card p-10 rounded-[3rem] cursor-pointer group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-16 h-[2px] bg-sky-500 mt-4 group-hover:w-full transition-all duration-500"></div>
+                        <span class="text-3xl font-black text-white group-hover:text-sky-400 transition-colors">₹299</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 uppercase tracking-tighter">Maharaja Thali</h3>
+                    <p class="text-zinc-500 leading-relaxed">A royal selection of Paneer Butter Masala, Dal Makhani, Mix Veg, and buttery Lacha Paratha.</p>
+                    <div class="mt-8 flex items-center gap-3 text-sky-500 text-xs font-black tracking-widest uppercase">
+                        <span>View Visual</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+
+                <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1599487488170-d11ec9c175f0?q=80&w=1000'; imgTitle = 'Smoky Tandoori Chicken'; imgPrice = '₹460'" 
+                     class="premium-card p-10 rounded-[3rem] cursor-pointer group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-16 h-[2px] bg-sky-500 mt-4 group-hover:w-full transition-all duration-500"></div>
+                        <span class="text-3xl font-black text-white group-hover:text-sky-400 transition-colors">₹460</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 uppercase tracking-tighter">Chicken Tandoori</h3>
+                    <p class="text-zinc-500 leading-relaxed">Full chicken marinated in hand-ground spices and roasted to smoky perfection in clay oven.</p>
+                    <div class="mt-8 flex items-center gap-3 text-sky-500 text-xs font-black tracking-widest uppercase">
+                        <span>View Visual</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-32 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-black text-white text-center mb-16 italic tracking-[0.2em] uppercase">Visual Excellence</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div @click="open = true; imgSrc = 'https://i.ibb.co/60sfv1rW/interior.jpg'; imgTitle = 'Luxury Ambience'; imgPrice = 'Lounge'" 
+                     class="relative h-[450px] rounded-[3.5rem] overflow-hidden group cursor-pointer border border-zinc-800">
+                    <img src="https://i.ibb.co/60sfv1rW/interior.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-10">
+                        <span class="text-sky-500 font-black tracking-widest text-xs uppercase">The Interior</span>
+                        <h4 class="text-white text-2xl font-bold mt-2">Sophisticated Dining</h4>
+                    </div>
+                </div>
+                <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1000'; imgTitle = 'Grilled Starters'; imgPrice = 'Fresh'" 
+                     class="relative h-[450px] rounded-[3.5rem] overflow-hidden group cursor-pointer border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-10">
+                        <span class="text-sky-500 font-black tracking-widest text-xs uppercase">Culinary Art</span>
+                        <h4 class="text-white text-2xl font-bold mt-2">Paneer Specialties</h4>
+                    </div>
+                </div>
+                <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1603894584214-4131665a5078?q=80&w=1000'; imgTitle = 'Traditional Curry'; imgPrice = 'Odia Soul'" 
+                     class="relative h-[450px] rounded-[3.5rem] overflow-hidden group cursor-pointer border border-zinc-800">
+                    <img src="https://images.unsplash.com/photo-1603894584214-4131665a5078?q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-70 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-10">
+                        <span class="text-sky-500 font-black tracking-widest text-xs uppercase">Authentic Taste</span>
+                        <h4 class="text-white text-2xl font-bold mt-2">Signature Chicken</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-[#050505]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="bg-[#111] p-16 rounded-[4rem] border border-zinc-800 text-center">
+                <h2 class="text-4xl font-black text-white italic">Guest Experience</h2>
+                <div class="flex justify-center gap-4 my-10" x-data="{ hover: 0, rating: 0 }">
+                    <template x-for="i in [1, 2, 3, 4, 5]">
+                        <i @mouseover="hover = i" @mouseout="hover = 0" @click="rating = i" 
+                           class="fas fa-star text-5xl cursor-pointer transition-all duration-300"
+                           :class="i <= (hover || rating) ? 'text-sky-400 scale-125 drop-shadow-[0_0_15px_rgba(14,165,233,0.5)]' : 'text-zinc-800'"></i>
+                    </template>
+                </div>
+                <textarea placeholder="Share your royal experience..." class="w-full p-8 bg-[#0a0a0a] border border-zinc-800 rounded-[2.5rem] text-white outline-none focus:border-sky-500 transition-all h-40 mb-8"></textarea>
+                <button class="w-full py-6 bg-sky-500 text-white font-black rounded-full text-xl hover:bg-white hover:text-black transition-all uppercase tracking-[0.2em]">Submit Feedback</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] flex gap-6 p-5 bg-white/5 backdrop-blur-2xl rounded-full border border-white/10 shadow-2xl">
+        <a href="tel:+918114674620" class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl hover:bg-sky-500 hover:text-white transition-all transform hover:scale-110 shadow-xl"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/918114674620" class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-4xl hover:bg-white hover:text-green-600 transition-all transform hover:scale-110 shadow-xl"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl hover:bg-white hover:text-red-600 transition-all transform hover:scale-110 shadow-xl"><i class="fas fa-map-marker-alt"></i></a>
+    </div>
+
+    <div x-show="open" x-cloak 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-95"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-95"
+         class="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-10 bg-black/95 backdrop-blur-md" @click.away="open = false">
+        
+        <div class="relative max-w-6xl w-full bg-[#111] rounded-[4rem] overflow-hidden shadow-[0_0_100px_rgba(14,165,233,0.3)] border border-zinc-800">
+            <button @click="open = false" class="absolute top-8 right-8 text-zinc-500 hover:text-white text-5xl transition-colors z-[210]">
+                <i class="fas fa-times-circle"></i>
+            </button>
+            <div class="flex flex-col lg:flex-row h-full">
+                <div class="lg:w-2/3 h-[50vh] lg:h-[70vh]">
+                    <img :src="imgSrc" class="w-full h-full object-cover" alt="Detail View">
+                </div>
+                <div class="lg:w-1/3 p-12 flex flex-col justify-center bg-[#111]">
+                    <span class="text-sky-500 font-black tracking-[0.3em] uppercase text-xs">Hotel Relax Inn</span>
+                    <h3 class="text-4xl font-black text-white mt-4 italic uppercase leading-tight" x-text="imgTitle"></h3>
+                    <div class="h-1 w-20 bg-zinc-800 my-8"></div>
+                    <p class="text-zinc-500 text-lg leading-relaxed mb-10">Experience the finest ingredients and authentic spices prepared specifically for your royal plate.</p>
+                    <div class="text-5xl font-black text-white" x-text="imgPrice"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
 </html>
