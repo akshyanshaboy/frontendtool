@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         'sky-blue': '#87CEEB',
+        'deep-ocean': '#1e3a8a',
       }
     },
   },
