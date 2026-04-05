@@ -1,112 +1,42 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Phone, MessageCircle, X } from 'lucide-react';
+
 export default function App() {
+  const [selectedImg, setSelectedImg] = useState(null);
+  const foodGallery = [
+    "https://i.ibb.co/qLt0Bp1R/mutton-thali.jpg",
+    "https://i.ibb.co/Ld7dYkqx/chicken-thali.jpg",
+    "https://i.ibb.co/27k6yQcT/fish-thali.jpg",
+    "https://i.ibb.co/35R3yFcS/paneer-special.jpg",
+    "https://i.ibb.co/fdbCcrLk/mutton-handi.jpg"
+  ];
+
   return (
-    <div style={{ fontFamily: "serif", margin: 0, padding: 0 }}>
-
-      {/* 🔥 HERO SECTION */}
-      <section style={{
-        height: "100vh",
-        background: "url('https://images.unsplash.com/photo-1501117716987-c8e1ecb2101b') center/cover",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white",
-        textAlign: "center"
-      }}>
-        <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
-          Hotel Relax Inn
-        </h1>
-        <p style={{ fontSize: "20px", marginBottom: "30px" }}>
-          Luxury Stay • Fine Dining • Comfort Redefined
-        </p>
-        <button style={{
-          padding: "15px 30px",
-          fontSize: "18px",
-          background: "gold",
-          border: "none",
-          borderRadius: "30px",
-          cursor: "pointer"
-        }}>
-          Book Now
-        </button>
-      </section>
-
-      {/* 🍽️ ABOUT */}
-      <section style={{
-        padding: "80px 5%",
-        textAlign: "center",
-        background: "#fff"
-      }}>
-        <h2 style={{ fontSize: "40px" }}>Welcome to Relax Inn</h2>
-        <p style={{ maxWidth: "700px", margin: "20px auto", color: "#555" }}>
-          Experience luxury and comfort with world-class hospitality.
-          Enjoy our premium rooms and delicious cuisine crafted by top chefs.
-        </p>
-      </section>
-
-      {/* 🖼️ GALLERY */}
-      <section style={{
-        padding: "80px 5%",
-        background: "#f4faff"
-      }}>
-        <h2 style={{ textAlign: "center", marginBottom: "40px" }}>
-          Our Gallery
-        </h2>
-
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: "20px"
-        }}>
-          {[
-            "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
-            "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa",
-            "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb"
-          ].map((img, i) => (
-            <img key={i}
-              src={img}
-              style={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-                borderRadius: "15px"
-              }}
+    <div className="bg-white min-h-screen font-sans">
+      <header className="h-[40vh] bg-sky-blue flex items-center justify-center text-white text-center p-4">
+        <h1 className="text-5xl font-black drop-shadow-lg">Hotel Relax Inn</h1>
+      </header>
+      <main className="p-10 max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold text-blue-900 mb-8 text-center">Gallery Visual Journey</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {foodGallery.map((src, i) => (
+            <motion.img 
+              key={i} src={src} whileHover={{ scale: 1.05 }} 
+              onClick={() => setSelectedImg(src)}
+              className="rounded-2xl cursor-pointer shadow-xl h-72 w-full object-cover border-4 border-white"
             />
           ))}
         </div>
-      </section>
-
-      {/* 📞 CONTACT */}
-      <section style={{
-        padding: "80px 5%",
-        textAlign: "center",
-        background: "#fff"
-      }}>
-        <h2>Contact Us</h2>
-        <p>📍 Khar, Mumbai</p>
-        <p>📞 +91 98765 43210</p>
-        <p>📧 relaxinn@email.com</p>
-      </section>
-
-      {/* 🔥 FLOATING BUTTON */}
-      <div style={{
-        position: "fixed",
-        bottom: "20px",
-        right: "20px"
-      }}>
-        <button style={{
-          padding: "15px 20px",
-          borderRadius: "50px",
-          background: "#25D366",
-          color: "white",
-          border: "none",
-          fontSize: "16px",
-          cursor: "pointer"
-        }}>
-          WhatsApp
-        </button>
-      </div>
-
+      </main>
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedImg(null)} className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out">
+            <motion.img initial={{ scale: 0.8 }} animate={{ scale: 1 }} src={selectedImg} className="max-w-full max-h-[90vh] rounded-lg border-4 border-sky-blue shadow-2xl shadow-sky-blue/20" />
+            <button className="absolute top-10 right-10 text-white"><X size={48} /></button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  )
+  );
 }
