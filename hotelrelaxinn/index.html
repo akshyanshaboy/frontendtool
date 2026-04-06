@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Relax Inn | Master Elite Edition</title>
+    <title>Hotel Relax Inn | The Full Elite Experience</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -15,42 +15,33 @@
         :root { --sky: #0ea5e9; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: white; scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* BACKGROUND ROTATION */
+        /* HERO BG ROTATION */
         #hero-bg {
             position: fixed;
             inset: 0;
             background-size: cover;
             background-position: center;
             z-index: -1;
-            filter: brightness(0.25) contrast(1.2);
+            filter: brightness(0.3) contrast(1.1);
             transition: background-image 2s ease-in-out;
         }
 
-        /* PREMIUM JUMP ANIMATION */
+        /* THE INSANE GLOW JUMP */
         @keyframes eliteJump {
             0%, 100% { transform: translateY(0); filter: brightness(1); }
-            50% { transform: translateY(-30px); filter: brightness(1.3) drop-shadow(0 0 25px var(--sky)); }
+            50% { transform: translateY(-35px); filter: brightness(1.5) drop-shadow(0 0 30px var(--sky)); }
         }
         .jump-text { font-family: 'Cormorant Garamond', serif; display: flex; justify-content: center; gap: 0.15rem; }
         .jump-text span { display: inline-block; animation: eliteJump 3.5s infinite ease-in-out; }
-        .space-block { width: 3.5rem; }
+        .space-block { width: 2.5rem; }
         .jump-text span:nth-child(n) { animation-delay: calc(var(--i) * 0.1s); }
 
-        /* GLASSMORPHISM */
-        .glass { 
-            background: rgba(255, 255, 255, 0.02); 
-            backdrop-filter: blur(40px); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-        .glass:hover { 
-            border-color: var(--sky); 
-            background: rgba(14, 165, 233, 0.05); 
-            transform: translateY(-10px); 
-        }
+        /* GLASS DESIGN */
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.07); transition: 0.5s; }
+        .glass:hover { border-color: var(--sky); background: rgba(255, 255, 255, 0.07); transform: translateY(-5px); }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--sky); border-radius: 10px; }
+        [x-cloak] { display: none !important; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body x-data="{ open: false, imgSrc: '', imgTitle: '', imgPrice: '', desc: '' }">
@@ -59,94 +50,149 @@
 
     <header class="relative h-screen flex flex-col items-center justify-center text-center px-4">
         <div class="relative z-10">
-            <div class="jump-text text-7xl md:text-[12rem] font-bold italic tracking-tighter leading-none mb-12">
+            <div class="jump-text text-6xl md:text-[10rem] font-bold italic tracking-tighter leading-none">
                 <span style="--i:1">H</span><span style="--i:2">o</span><span style="--i:3">t</span><span style="--i:4">e</span><span style="--i:5">l</span>
                 <div class="space-block"></div>
                 <span class="text-sky-400" style="--i:6">R</span><span class="text-sky-400" style="--i:7">e</span><span class="text-sky-400" style="--i:8">l</span><span class="text-sky-400" style="--i:9">a</span><span class="text-sky-400" style="--i:10">x</span>
                 <div class="space-block"></div>
                 <span class="text-sky-400" style="--i:11">I</span><span class="text-sky-400" style="--i:12">n</span><span class="text-sky-400" style="--i:13">n</span>
             </div>
-            <p class="mt-10 text-zinc-200 uppercase tracking-[1.5em] text-[14px] md:text-2xl font-extrabold">
-                The Apex of Culinary Sophistication
-            </p>
-            <a href="#menu" class="mt-24 px-20 py-7 border border-white/20 rounded-full hover:bg-sky-500 hover:border-sky-500 transition-all uppercase tracking-[0.5em] text-[12px] font-black inline-block">Discover The Menu</a>
+            <p class="mt-10 text-zinc-500 uppercase tracking-[1em] text-[8px] md:text-xs font-black">The Apex of Culinary Sophistication</p>
+            <a href="#menu" class="mt-16 px-14 py-5 border border-white/10 rounded-full hover:bg-sky-500 transition-all uppercase tracking-widest text-[10px] font-black inline-block">Explore Full Menu</a>
         </div>
     </header>
 
-    <section id="menu" class="py-40 px-6 max-w-7xl mx-auto" x-data="{ tab: 'tandoor' }">
-        <div class="text-center mb-24">
-            <h2 class="text-6xl font-bold italic mb-12 uppercase tracking-tighter">The <span class="text-sky-400">Curated</span> Menu</h2>
-            <div class="flex flex-wrap justify-center gap-12 border-b border-white/5 pb-8">
-                <button @click="tab = 'mutton'" :class="tab === 'mutton' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-zinc-600'" class="pb-2 uppercase tracking-[0.3em] text-[11px] font-black transition-all">Mutton</button>
-                <button @click="tab = 'veg'" :class="tab === 'veg' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-zinc-600'" class="pb-2 uppercase tracking-[0.3em] text-[11px] font-black transition-all">Vegetarian</button>
-                <button @click="tab = 'tandoor'" :class="tab === 'tandoor' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-zinc-600'" class="pb-2 uppercase tracking-[0.3em] text-[11px] font-black transition-all">Tandoor & Starters</button>
+    <section id="menu" class="py-32 px-6 max-w-7xl mx-auto" x-data="{ tab: 'mutton' }">
+        <div class="text-center mb-20">
+            <h2 class="text-6xl font-bold italic tracking-tighter mb-8">The <span class="text-sky-400">Master</span> List</h2>
+            <div class="flex flex-wrap justify-center gap-4 border-b border-white/5 pb-6">
+                <button @click="tab = 'mutton'" :class="tab === 'mutton' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-zinc-600'" class="px-6 pb-2 uppercase tracking-widest text-[10px] font-black">Mutton Selection</button>
+                <button @click="tab = 'veg'" :class="tab === 'veg' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-zinc-600'" class="px-6 pb-2 uppercase tracking-widest text-[10px] font-black">Royal Vegetarian</button>
+                <button @click="tab = 'tandoor'" :class="tab === 'tandoor' ? 'text-sky-400 border-b-2 border-sky-400' : 'text-zinc-600'" class="px-6 pb-2 uppercase tracking-widest text-[10px] font-black">Tandoor & Starters</button>
             </div>
         </div>
 
-        <div x-show="tab === 'tandoor'" x-transition:enter="transition duration-500" class="grid md:grid-cols-3 gap-8">
-            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1599487488170-d11ec9c175f0?q=80&w=1000'; imgTitle = 'Chicken Tikka'; imgPrice = '₹260'; desc = 'Smokey, tender chicken marinated in hand-ground spices.'" class="glass p-8 rounded-[3rem] cursor-pointer group">
-                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c175f0?q=80&w=600" class="w-full h-56 object-cover rounded-[2.5rem] mb-8 group-hover:scale-105 transition-all">
-                <h3 class="text-2xl font-bold uppercase">Chicken Tikka</h3>
-                <span class="text-sky-400 text-2xl font-black block mt-6">₹260</span>
-            </div>
-            </div>
-    </section>
-
-    <section id="gallery" class="py-40 bg-zinc-950/50 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-7xl font-black uppercase tracking-[0.8em] text-white mb-24 italic opacity-80">
-                The Visual Journey
-            </h2>
-            <div class="columns-1 md:columns-3 gap-6 space-y-6">
-                <div class="glass p-3 rounded-[2.5rem] overflow-hidden"><img src="https://i.ibb.co/60sfv1rW/interior.jpg" class="rounded-[2rem] w-full"></div>
-                <div class="glass p-3 rounded-[2.5rem] overflow-hidden"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=800" class="rounded-[2rem] w-full"></div>
-                <div class="glass p-3 rounded-[2.5rem] overflow-hidden"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=800" class="rounded-[2rem] w-full"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="feedback" class="py-40 px-6 max-w-5xl mx-auto">
-        <div class="glass p-16 md:p-24 rounded-[5rem] text-center shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sky-500 to-transparent"></div>
-            <h2 class="text-5xl font-bold italic mb-10 uppercase">Guest <span class="text-sky-400">Feedback</span></h2>
-            <p class="text-zinc-500 mb-16 tracking-widest text-xs uppercase">We value your experience</p>
-            
-            <form class="space-y-8" action="#" method="POST">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <input type="text" placeholder="Name" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 outline-none focus:border-sky-500 transition-all text-sm font-bold">
-                    <input type="email" placeholder="Email" required class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 outline-none focus:border-sky-500 transition-all text-sm font-bold">
+        <div x-show="tab === 'mutton'" x-transition class="grid md:grid-cols-3 gap-6">
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=1000'; imgTitle = 'Executive Mutton Thali'; imgPrice = '₹280'; desc = 'Our crown jewel. Slow-cooked mutton in clay-pot style spices, served with steaming rice and dalma.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Executive Thali</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Signature</span>
+                    <span class="text-sky-400 font-bold">₹280</span>
                 </div>
-                
-                <div class="flex justify-center gap-4 py-4" x-data="{ rating: 5 }">
-                    <template x-for="i in 5">
-                        <i @click="rating = i" 
-                           class="fas fa-star text-3xl cursor-pointer transition-all" 
-                           :class="i <= rating ? 'text-sky-400 drop-shadow-[0_0_10px_#0ea5e9]' : 'text-zinc-800'"></i>
-                    </template>
+            </div>
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?q=80&w=1000'; imgTitle = 'Mutton Kassa (Semi Dry)'; imgPrice = '₹220'; desc = 'A rich, semi-dry mutton curry tossed in iron-wok spices.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Mutton Kassa</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Chef's Special</span>
+                    <span class="text-sky-400 font-bold">₹220</span>
                 </div>
+            </div>
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1000'; imgTitle = 'Mutton Keema Matar'; imgPrice = '₹240'; desc = 'Minced mutton with green peas, slow-simmered in a tomato-onion base.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Keema Matar</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Premium</span>
+                    <span class="text-sky-400 font-bold">₹240</span>
+                </div>
+            </div>
+        </div>
 
-                <textarea placeholder="Share your thoughts..." required class="w-full bg-white/5 border border-white/10 rounded-[2.5rem] p-8 outline-none focus:border-sky-500 h-48 transition-all text-sm font-bold"></textarea>
-                
-                <button type="submit" class="px-24 py-7 bg-white text-black font-black rounded-full uppercase text-[11px] tracking-[0.4em] hover:bg-sky-500 hover:text-white transition-all">
-                    Submit Experience
-                </button>
-            </form>
+        <div x-show="tab === 'veg'" x-transition class="grid md:grid-cols-3 gap-6">
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1000'; imgTitle = 'Maharaja Veg Thali'; imgPrice = '₹299'; desc = 'Royal feast including Paneer, Mix Veg, Dal Makhani, and Dessert.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Maharaja Thali</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Full Plate</span>
+                    <span class="text-sky-400 font-bold">₹299</span>
+                </div>
+            </div>
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1000'; imgTitle = 'Paneer Butter Masala'; imgPrice = '₹180'; desc = 'Soft cubes of cottage cheese in a creamy tomato gravy.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6">
+                <h3 class="text-xl font-bold uppercase">Paneer Butter</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Classic</span>
+                    <span class="text-sky-400 font-bold">₹180</span>
+                </div>
+            </div>
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=1000'; imgTitle = 'Dal Makhani Gold'; imgPrice = '₹160'; desc = 'Overnight simmered black lentils finished with fresh cream.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6">
+                <h3 class="text-xl font-bold uppercase">Dal Makhani</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Elite</span>
+                    <span class="text-sky-400 font-bold">₹160</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="fixed bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-12 px-14 py-7 glass rounded-full z-[100] border-white/20 shadow-2xl">
-        <a href="tel:+918114674620" class="text-2xl text-zinc-400 hover:text-sky-400 transition-all"><i class="fas fa-phone-alt"></i></a>
-        <div class="h-10 w-[1px] bg-white/10"></div>
-        <a href="https://wa.me/918114674620" class="text-5xl text-green-500 hover:scale-125 transition-transform"><i class="fab fa-whatsapp"></i></a>
-        <div class="h-10 w-[1px] bg-white/10"></div>
-        <a href="#" class="text-2xl text-zinc-400 hover:text-red-500 transition-all"><i class="fas fa-map-marker-alt"></i></a>
+    <section id="gallery" class="py-32 bg-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-center text-xs tracking-[1.5em] text-zinc-500 uppercase mb-20">The Visual Archive</h2>
+            <div class="columns-1 md:columns-4 gap-4 space-y-4">
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://i.ibb.co/60sfv1rW/interior.jpg" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c175f0?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-10 px-12 py-6 glass rounded-full z-[100] border-white/20 shadow-2xl">
+        <a href="tel:+918114674620" class="text-xl text-zinc-400 hover:text-sky-400"><i class="fas fa-phone-alt"></i></a>
+        <div class="h-8 w-[1px] bg-white/10"></div>
+        <a href="https://wa.me/918114674620" class="text-4xl text-green-500 hover:scale-110 transition-transform"><i class="fab fa-whatsapp"></i></a>
+        <div class="h-8 w-[1px] bg-white/10"></div>
+        <a href="https://maps.google.com" target="_blank" class="text-xl text-zinc-400 hover:text-red-500"><i class="fas fa-location-arrow"></i></a>
+    </div>
+
+    <div x-show="open" x-cloak 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 scale-95"
+         x-transition:enter-end="opacity-100 scale-100"
+         class="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl" @click.away="open = false">
+        
+        <div class="relative w-full max-w-5xl glass rounded-[4rem] overflow-hidden flex flex-col md:flex-row shadow-[0_0_100px_rgba(14,165,233,0.3)]">
+            <button @click="open = false" class="absolute top-10 right-10 text-zinc-500 text-4xl z-50"><i class="fas fa-times-circle"></i></button>
+            <div class="md:w-1/2 h-80 md:h-auto">
+                <img :src="imgSrc" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-16 flex flex-col justify-center">
+                <span class="text-sky-400 font-black tracking-[0.5em] text-[10px] uppercase mb-4">Hotel Relax Inn</span>
+                <h3 class="text-5xl font-bold italic uppercase tracking-tighter" x-text="imgTitle"></h3>
+                <div class="h-[1px] w-12 bg-sky-500 my-10"></div>
+                <p class="text-zinc-500 text-lg font-light leading-relaxed mb-12" x-text="desc"></p>
+                <div class="text-6xl font-bold" x-text="imgPrice"></div>
+            </div>
+        </div>
     </div>
 
     <script>
         const images = [
             'https://i.ibb.co/60sfv1rW/interior.jpg',
-            'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1200',
-            'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1200'
+            'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=1000',
+            'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000'
         ];
         let cur = 0;
         const bg = document.getElementById('hero-bg');
@@ -154,7 +200,7 @@
             bg.style.backgroundImage = `url('${images[cur]}')`;
             cur = (cur + 1) % images.length;
         }
-        rotate(); setInterval(rotate, 7000);
+        rotate(); setInterval(rotate, 6000);
     </script>
 </body>
 </html>
