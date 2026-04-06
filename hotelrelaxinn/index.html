@@ -169,14 +169,15 @@
                     <i @click="rating = i" class="fas fa-star text-2xl cursor-pointer transition-all" 
                        :class="i <= rating ? 'text-sky-400 drop-shadow-[0_0_10px_#0ea5e9]' : 'text-zinc-800'"></i>
                 </template>
+                <input type="hidden" name="Star Rating" :value="rating">
             </div>
 
-            <form class="space-y-6">
+            <form action="https://formspree.io/f/xaqlapgv" method="POST" class="space-y-6">
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:border-sky-500 transition-all text-sm">
-                    <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:border-sky-500 transition-all text-sm">
+                    <input type="text" name="Guest Name" required placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:border-sky-500 transition-all text-sm">
+                    <input type="email" name="Email Address" required placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:border-sky-500 transition-all text-sm">
                 </div>
-                <textarea placeholder="Tell us about your visit..." class="w-full bg-white/5 border border-white/10 rounded-3xl p-6 outline-none focus:border-sky-500 h-40 transition-all text-sm"></textarea>
+                <textarea name="Feedback Message" required placeholder="Tell us about your visit..." class="w-full bg-white/5 border border-white/10 rounded-3xl p-6 outline-none focus:border-sky-500 h-40 transition-all text-sm"></textarea>
                 <button type="submit" class="w-full md:w-auto px-16 py-5 bg-sky-500 text-white font-black rounded-full uppercase text-[10px] tracking-widest hover:bg-sky-400 transition-all">Submit Feedback</button>
             </form>
         </div>
