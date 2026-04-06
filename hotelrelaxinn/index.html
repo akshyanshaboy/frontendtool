@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Relax Inn | Elite Experience</title>
+    <title>Hotel Relax Inn | The Full Elite Experience</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -15,7 +15,7 @@
         :root { --sky: #0ea5e9; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #000; color: white; scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* HERO BG ROTATION */
+        /* FIXED BACKGROUND */
         #hero-bg {
             position: fixed;
             inset: 0;
@@ -26,7 +26,7 @@
             transition: background-image 2s ease-in-out;
         }
 
-        /* THE INSANE GLOW JUMP */
+        /* THE SIGNATURE BLUE GLOW JUMP */
         @keyframes eliteJump {
             0%, 100% { transform: translateY(0); filter: brightness(1); }
             50% { transform: translateY(-35px); filter: brightness(1.5) drop-shadow(0 0 30px var(--sky)); }
@@ -36,7 +36,7 @@
         .space-block { width: 2.5rem; }
         .jump-text span:nth-child(n) { animation-delay: calc(var(--i) * 0.1s); }
 
-        /* GLASS DESIGN */
+        /* GLASSMORPHISM CARDS */
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255, 255, 255, 0.07); transition: 0.5s; }
         .glass:hover { border-color: var(--sky); background: rgba(255, 255, 255, 0.07); transform: translateY(-5px); }
 
@@ -72,7 +72,7 @@
         </div>
 
         <div x-show="tab === 'mutton'" x-transition class="grid md:grid-cols-3 gap-6">
-            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=1000'; imgTitle = 'Executive Mutton Thali'; imgPrice = '₹280'; desc = 'Clay-pot style mutton served with steaming rice and dalma.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=1000'; imgTitle = 'Executive Mutton Thali'; imgPrice = '₹280'; desc = 'Premium slow-cooked mutton served with seasonal sides.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
                 <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
                 <h3 class="text-xl font-bold uppercase">Executive Thali</h3>
                 <div class="flex justify-between items-center mt-4">
@@ -90,6 +90,9 @@
                 <div class="glass p-2 rounded-[2rem] overflow-hidden group">
                     <img src="https://i.ibb.co/60sfv1rW/interior.jpg" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
                 </div>
+                <div class="glass p-2 rounded-[2rem] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=600" class="rounded-[1.5rem] w-full hover:scale-110 transition duration-700">
+                </div>
                 </div>
         </div>
     </section>
@@ -101,9 +104,9 @@
             
             <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="space-y-6">
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" name="name" required placeholder="Your Name" 
+                    <input type="text" name="guest_name" required placeholder="Your Name" 
                            class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:border-sky-500 transition-all text-sm">
-                    <input type="email" name="email" required placeholder="Email Address" 
+                    <input type="email" name="guest_email" required placeholder="Email Address" 
                            class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:border-sky-500 transition-all text-sm">
                 </div>
                 <textarea name="message" required placeholder="Tell us about your visit..." 
@@ -127,7 +130,7 @@
     <div x-show="open" x-cloak 
          x-transition:enter="transition ease-out duration-300"
          class="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-black/90 backdrop-blur-xl" @click.away="open = false">
-        <div class="relative w-full max-w-5xl glass rounded-[4rem] overflow-hidden flex flex-col md:flex-row shadow-[0_0_100px_rgba(14,165,233,0.3)]">
+        <div class="relative w-full max-w-5xl glass rounded-[4rem] overflow-hidden flex flex-col md:row shadow-[0_0_100px_rgba(14,165,233,0.3)]">
             <button @click="open = false" class="absolute top-10 right-10 text-zinc-500 text-4xl z-50"><i class="fas fa-times-circle"></i></button>
             <div class="md:w-1/2 h-80 md:h-auto"><img :src="imgSrc" class="w-full h-full object-cover"></div>
             <div class="md:w-1/2 p-16 flex flex-col justify-center">
