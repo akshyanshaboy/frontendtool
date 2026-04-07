@@ -125,6 +125,33 @@
                 </div>
             </div>
         </div>
+
+        <div x-show="tab === 'tandoor'" x-transition class="grid md:grid-cols-3 gap-6">
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1599487488170-d11ec9c175f0?q=80&w=1000'; imgTitle = 'Chicken Tikka Elite'; imgPrice = '₹210'; desc = 'Succulent chunks of chicken marinated in yogurt and elite spices, roasted to perfection in a clay oven.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c175f0?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Chicken Tikka</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Tandoor</span>
+                    <span class="text-sky-400 font-bold">₹210</span>
+                </div>
+            </div>
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=1000'; imgTitle = 'Paneer Tikka Zest'; imgPrice = '₹190'; desc = 'Fresh paneer cubes with bell peppers and onions, marinated in mustard oil and house spices.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Paneer Tikka</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Vegetarian</span>
+                    <span class="text-sky-400 font-bold">₹190</span>
+                </div>
+            </div>
+            <div @click="open = true; imgSrc = 'https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?q=80&w=1000'; imgTitle = 'Tandoori Roti Basket'; imgPrice = '₹120'; desc = 'A selection of plain, butter, and garlic rotis freshly baked in the tandoor.'" class="glass p-6 rounded-[2.5rem] cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?q=80&w=400" class="w-full h-48 object-cover rounded-[2rem] mb-6 group-hover:scale-105 transition-all">
+                <h3 class="text-xl font-bold uppercase">Roti Basket</h3>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="text-zinc-500 text-xs uppercase font-bold">Breads</span>
+                    <span class="text-sky-400 font-bold">₹120</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="gallery" class="py-32 bg-white/5">
